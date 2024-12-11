@@ -1,15 +1,19 @@
+import React, { useContext } from "react"; // Import useContext correctly
 import { Navigate, Outlet } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "/context/userContext"; // Assuming this context is properly set up
+import { UserContext } from "/context/userContext"; // Adjust path if needed
 
 const PrivateRoute = () => {
-  const { user } = useContext(UserContext); // Assuming 'user' is null if not logged in
+  const { user, loading } = useContext(UserContext);
 
-  if (!user) {
-    return <Navigate to="/login" replace />; // Redirect to login if not authenticated
+  if (loading) {
+    return <div>Loading...</div>; // Display a loading indicator
   }
 
-  return <Outlet />; // Allow access to child routes if authenticated
+  if (!user) {
+    return <Navigate to="/login" replace />; // Redirect to login if user is not authenticated
+  }
+
+  return <Outlet />; // Render child components if user is authenticated
 };
 
 export default PrivateRoute;

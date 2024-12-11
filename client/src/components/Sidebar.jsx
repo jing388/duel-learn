@@ -3,7 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "../index.css";
 import Avatar from "@mui/material/Avatar";
 import { UserContext } from "/context/userContext";
-import { Tooltip } from '@mui/material';
+import { Tooltip } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 
 // Icons
 import DuelLearnRoundedIcon from "@mui/icons-material/AutoStoriesRounded";
@@ -13,10 +14,10 @@ import YourLibraryRoundedIcon from "@mui/icons-material/ImportContactsRounded";
 import ProfileRoundedIcon from "@mui/icons-material/PersonRounded";
 import ShopRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
-import MenuIcon from '@mui/icons-material/Menu';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
+import MenuIcon from "@mui/icons-material/Menu";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 // Paths
 import Home from "../pages/dashboard/Home";
@@ -24,6 +25,7 @@ import Explore from "../pages/dashboard/Explore";
 import YourLibrary from "../pages/dashboard/YourLibrary";
 import Profile from "../pages/dashboard/Profile";
 import Shop from "../pages/dashboard/Shop";
+import Logout from "../components/Logout";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -31,6 +33,7 @@ const Sidebar = () => {
   const { user, loading } = useContext(UserContext);
 
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [logoutOpen, setLogoutOpen] = useState(false);
 
   const Menus = [
     {
@@ -80,36 +83,56 @@ const Sidebar = () => {
   }
 
   return (
-    <div className={`h-screen ${isCollapsed ? 'w-28' : 'w-64'} text-[#E2DDF3] flex flex-col p-5 mx-2 transition-all relative`}>
+    <div
+      className={`h-screen ${
+        isCollapsed ? "w-28" : "w-64"
+      } text-[#E2DDF3] flex flex-col p-5 mx-2 transition-all relative`}
+    >
       {/** Header */}
-      <div className={`flex items-center p-2 mb-4 gap-2  transition-all ${isCollapsed ? 'justify-center' : ''}`}>
+      <div
+        className={`flex items-center p-2 mb-4 gap-2  transition-all ${
+          isCollapsed ? "justify-center" : ""
+        }`}
+      >
         {/* Collapse/Expand Button in the Header */}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
           className="p-2 text-[#E2DDF3] rounded-md  hover:bg-[#130a2e] focus:outline-none"
         >
           {isCollapsed ? (
-            <MenuIcon fontSize="large" />  // Larger size when expanded
+            <MenuIcon fontSize="large" /> // Larger size when expanded
           ) : (
-            <MenuOpenIcon fontSize="large" />  // Smaller size when collapsed          
+            <MenuOpenIcon fontSize="large" /> // Smaller size when collapsed
           )}
         </button>
 
         {/* Text appears only when not collapsed */}
-        {!isCollapsed && <span className="ml-2 text-xl font-bold whitespace-nowrap transition-all">Duel Learn</span>}
+        {!isCollapsed && (
+          <span className="ml-2 text-xl font-bold whitespace-nowrap transition-all">
+            Duel Learn
+          </span>
+        )}
       </div>
-
-
 
       {/** Create New */}
       <div className="space-y-4 w-full text-left rounded-xl gap-2">
-        <button className={`w-full bg-[#381898] text-[#E2DDF3] py-2 rounded-lg hover:bg-[#4D18E8] flex items-center justify-center gap-2 ${isCollapsed ? 'justify-center' : ''}`}>
+        <button
+          className={`w-full bg-[#381898] text-[#E2DDF3] py-2 rounded-lg hover:bg-[#4D18E8] flex items-center justify-center gap-2 ${
+            isCollapsed ? "justify-center" : ""
+          }`}
+        >
           <AddRoundedIcon />
           {/* Text hides when collapsed */}
-          {!isCollapsed && <span className=" whitespace-nowrap">Create New</span>}
+          {!isCollapsed && (
+            <span className=" whitespace-nowrap">Create New</span>
+          )}
         </button>
 
-        <button className={`w-full border-2 border-[#E2DDF3] text-white py-2 rounded-xl flex items-center justify-center hover:bg-[#4D18E8] hover:border-2 hover:border-[#4D18E8] ${isCollapsed ? 'justify-center' : ''}`}>
+        <button
+          className={`w-full border-2 border-[#E2DDF3] text-white py-2 rounded-xl flex items-center justify-center hover:bg-[#4D18E8] hover:border-2 hover:border-[#4D18E8] ${
+            isCollapsed ? "justify-center" : ""
+          }`}
+        >
           <PlayArrowRoundedIcon />
           {/* Text hides when collapsed */}
           {!isCollapsed && <span className="ml-2 whitespace-nowrap">Play</span>}
@@ -128,7 +151,7 @@ const Sidebar = () => {
           PopperProps={{
             modifiers: [
               {
-                name: 'offset',
+                name: "offset",
                 options: {
                   offset: [0, 10], // Adjust this value to change tooltip positioning
                 },
@@ -136,21 +159,32 @@ const Sidebar = () => {
             ],
           }}
           sx={{
-            '& .MuiTooltip-tooltip': {
-              animation: isCollapsed ? 'pop 0.3s ease-out' : 'none', // Apply "pop" effect when collapsed
+            "& .MuiTooltip-tooltip": {
+              animation: isCollapsed ? "pop 0.3s ease-out" : "none", // Apply "pop" effect when collapsed
             },
           }}
         >
           <button
-            className={`flex items-center p-2 w-full text-left rounded-xl gap-2 m-1 ${location.pathname === menu.path
-              ? "border-2 border-[#4D18E8] text-[#4D18E8]"
-              : "hover:text-[#A38CE6]"} ${isCollapsed ? 'justify-center' : ''}`}
+            className={`flex items-center p-2 w-full text-left rounded-xl gap-2 m-1 ${
+              location.pathname === menu.path
+                ? "border-2 border-[#4D18E8] text-[#4D18E8]"
+                : "hover:text-[#A38CE6]"
+            } ${isCollapsed ? "justify-center" : ""}`}
             onClick={() => handleMenuClick(menu)}
           >
-            <span className={`${location.pathname === menu.path ? "text-[#4D18E8]" : ""} ${isCollapsed ? 'flex justify-center items-center w-full' : ''}`}>
+            <span
+              className={`${
+                location.pathname === menu.path ? "text-[#4D18E8]" : ""
+              } ${
+                isCollapsed ? "flex justify-center items-center w-full" : ""
+              }`}
+            >
               {menu.icon}
             </span>
-            {!isCollapsed && <span className="ml-2 whitespace-nowrap">{menu.title}</span>} {/* Prevent text wrapping */}
+            {!isCollapsed && (
+              <span className="ml-2 whitespace-nowrap">{menu.title}</span>
+            )}{" "}
+            {/* Prevent text wrapping */}
           </button>
         </Tooltip>
       ))}
@@ -170,14 +204,12 @@ const Sidebar = () => {
             </div>
           </>
         )}
-        <span className="ml-auto">
-          <MoreVertIcon />
-        </span>
+        <IconButton onClick={() => setLogoutOpen((prev) => !prev)}>
+          <MoreVertIcon className="text-[#E2DDF3]" />
+        </IconButton>
+        {logoutOpen && <Logout />}
       </div>
     </div>
-
-
-
   );
 };
 

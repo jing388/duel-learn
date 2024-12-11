@@ -6,7 +6,7 @@ import axios from "axios";
 import { TextField, IconButton, InputAdornment } from "@mui/material";
 import VisibilityRoundedIcon from "@mui/icons-material/VisibilityRounded";
 import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
-import ExitIcon from '../../assets/images/Exit.png';
+import ExitIcon from "../../assets/images/Exit.png";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -79,21 +79,18 @@ const Login = () => {
     setError({ general: "" });
   };
 
-
-
   return (
-    <div className="h-screen flex flex-col items-center justify-center ">
-      <div className="w-[430px] sm:w-[500px] md:w-[700px] lg:w-[800px] pb-6 text-right flex justify-end">
+    <div className="h-screen flex flex-col items-center justify-center">
+      <div className="w-[430px] sm:w-[500px] md:w-[700px] lg:w-[800px] mt-100 text-right flex justify-end">
         <img
           src={ExitIcon}
           alt=""
-          style={{ width: '39px' }}
+          style={{ width: "39px" }}
           className="hover:scale-110 cursor-pointer"
         />
       </div>
 
       <div className="w-full max-w-md rounded-lg p-8 shadow-md">
-
         {/* Heading */}
         <h1 className="text-4xl font-bold text-center text-white mb-2">
           Login your Account
@@ -138,45 +135,46 @@ const Login = () => {
               }}
               error={!!errors.username} // This ensures error styling is applied when there's an error
               sx={{
-                width: '100%',
-                backgroundColor: '#3B354D',
-                color: '#E2DDF3',
-                marginBottom: '14px',
-                borderRadius: '8px',
-                '& .MuiInputBase-root': {
-                  color: '#E2DDF3', // Text color
-                  backgroundColor: '#3B354D', // Background color
-                  borderRadius: '8px',
-                  '&:hover': {
-                    backgroundColor: '#3B354D', // Keep the same background color on hover
+                width: "100%",
+                backgroundColor: "#3B354D",
+                color: "#E2DDF3",
+                marginBottom: "14px",
+                borderRadius: "8px",
+                "& .MuiInputBase-root": {
+                  color: "#E2DDF3", // Text color
+                  backgroundColor: "#3B354D", // Background color
+                  borderRadius: "8px",
+                  "&:hover": {
+                    backgroundColor: "#3B354D", // Keep the same background color on hover
                   },
-                  '&.Mui-focused': {
-                    backgroundColor: '#3B354D', // Keep the background color when focused
+                  "&.Mui-focused": {
+                    backgroundColor: "#3B354D", // Keep the background color when focused
                   },
                 },
-                '& .MuiInputLabel-root': {
-                  color: '#9F9BAE', // Label color
+                "& .MuiInputLabel-root": {
+                  color: "#9F9BAE", // Label color
                 },
-                '& .MuiInput-underline:before': {
-                  borderBottomColor: '#9F9BAE', // Initial border color
+                "& .MuiInput-underline:before": {
+                  borderBottomColor: "#9F9BAE", // Initial border color
                 },
-                '& .MuiInput-underline:after': {
-                  borderBottomColor: '#4D18E8', // Border color when focused
+                "& .MuiInput-underline:after": {
+                  borderBottomColor: "#4D18E8", // Border color when focused
                 },
                 // Conditionally apply red border when there's an error
-                '& .MuiFilledInput-root': {
-                  borderColor: errors.username ? 'red' : '#9F9BAE', // Red border when error
-                  '&:hover': {
-                    borderColor: errors.username ? 'red' : '#9F9BAE', // Hover color when there's an error
+                "& .MuiFilledInput-root": {
+                  borderColor: errors.username ? "red" : "#9F9BAE", // Red border when error
+                  "&:hover": {
+                    borderColor: errors.username ? "red" : "#9F9BAE", // Hover color when there's an error
                   },
                 },
               }}
             />
 
-
             {/* Error message for username */}
             {errors.username && (
-              <div className="text-red-500 text-sm mt-[-9px] mb-4">{errors.username}</div>
+              <div className="text-red-500 text-sm mt-[-9px] mb-4">
+                {errors.username}
+              </div>
             )}
           </div>
           {/* Password Input */}
@@ -195,34 +193,34 @@ const Login = () => {
               }}
               fullWidth
               sx={{
-                width: '100%',
-                backgroundColor: '#3B354D', // Maintain background color even when focused
-                color: '#E2DDF3',
-                marginBottom: '14px',
-                borderRadius: '8px',
-                '& .MuiInputBase-root': {
-                  color: '#E2DDF3', // Text color
-                  backgroundColor: '#3B354D', // Background color
-                  borderRadius: '8px',
-                  '&:hover': {
-                    backgroundColor: '#3B354D', // Keep the same background color on hover
+                width: "100%",
+                backgroundColor: "#3B354D", // Maintain background color even when focused
+                color: "#E2DDF3",
+                marginBottom: "14px",
+                borderRadius: "8px",
+                "& .MuiInputBase-root": {
+                  color: "#E2DDF3", // Text color
+                  backgroundColor: "#3B354D", // Background color
+                  borderRadius: "8px",
+                  "&:hover": {
+                    backgroundColor: "#3B354D", // Keep the same background color on hover
                   },
-                  '&.Mui-focused': {
-                    backgroundColor: '#3B354D', // Keep the background color when focused
+                  "&.Mui-focused": {
+                    backgroundColor: "#3B354D", // Keep the background color when focused
                   },
                 },
-                '& .MuiInputLabel-root': {
-                  color: '#9F9BAE', // Label color
+                "& .MuiInputLabel-root": {
+                  color: "#9F9BAE", // Label color
                 },
-                '& .MuiInput-underline:before': {
-                  borderBottomColor: '#9F9BAE', // Initial border color
+                "& .MuiInput-underline:before": {
+                  borderBottomColor: "#9F9BAE", // Initial border color
                 },
-                '& .MuiInput-underline:after': {
-                  borderBottomColor: '#4D18E8', // Border color when focused
+                "& .MuiInput-underline:after": {
+                  borderBottomColor: "#4D18E8", // Border color when focused
                 },
-                '&:focus-within': {
-                  outline: 'none',
-                  boxShadow: '0 0 0 2px #4D18E8', // Focus ring when the input is focused
+                "&:focus-within": {
+                  outline: "none",
+                  boxShadow: "0 0 0 2px #4D18E8", // Focus ring when the input is focused
                 },
               }}
               slotProps={{
@@ -251,10 +249,11 @@ const Login = () => {
             />
             {/* Error message for password */}
             {errors.password && (
-              <div className="text-red-500 text-sm mt-[-1px] mb-2">{errors.password}</div>
+              <div className="text-red-500 text-sm mt-[-1px] mb-2">
+                {errors.password}
+              </div>
             )}
           </div>
-
 
           {/* Forgot Password */}
           <div className="text-right">
@@ -291,7 +290,10 @@ const Login = () => {
         {/* Footer */}
         <p className="text-center text-sm text-[#9F9BAE] mt-6">
           Don’t have an account?{" "}
-          <Link to="/sign-up" className="text-[#ffffff] font-bold hover:underline">
+          <Link
+            to="/sign-up"
+            className="text-[#ffffff] font-bold hover:underline"
+          >
             Sign up
           </Link>
         </p>

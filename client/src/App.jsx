@@ -35,39 +35,21 @@ function App() {
     <UserProvider>
       <Router>
         <Routes>
+          {/* Default Route (Redirect to Login) */}
+          <Route path="/" element={<Navigate to="/login" replace />} />
+
           {/* Public Routes */}
-          <Route
-            path="/"
-            element={<Login />}
-          />
-          <Route
-            path="/sign-up"
-            element={<SignUp />}
-          />
-          <Route
-            path="/forgot-password"
-            element={<ForgotPass />}
-          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/forgot-password" element={<ForgotPass />} />
           <Route
             path="/confirmation-account"
             element={<ConfirmationAccount />}
           />
-          <Route
-            path="/security-code"
-            element={<SecurityCode />}
-          />
-          <Route
-            path="/reset-password"
-            element={<ResetPassword />}
-          />
-          <Route
-            path="/success-reset-password"
-            element={<SuccessReset />}
-          />
-          <Route
-            path="/welcome-page"
-            element={<WelcomePage />}
-          />
+          <Route path="/security-code" element={<SecurityCode />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/success-reset-password" element={<SuccessReset />} />
+          <Route path="/welcome-page" element={<WelcomePage />} />
 
           {/* Private Routes */}
           <Route element={<PrivateRoute />}>
